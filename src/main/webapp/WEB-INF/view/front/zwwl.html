@@ -1,0 +1,123 @@
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<head>
+    <title>展望未来</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <link rel="shortcut icon" href="assets/css/images/favicon.ico"/>
+    <link rel="stylesheet" href="assets/css/zwwl.css" type="text/css" media="all"/>
+    <!--[if IE 6]>
+    <link rel="stylesheet" href="assets/css/ie6.css" type="text/css" media="all"/>
+    <script src="assets/js/png-fix.js" type="text/javascript"></script>
+    <![endif]-->
+</head>
+<style type="text/css">
+    .container, .container img {
+        width: 580px;
+        height: 260px;
+        color: #333;
+    }
+
+    .container img {
+        border: 0;
+        vertical-align: top;
+    }
+
+    #main .shell table tr td #tp1 {
+        height: 210px;
+        width: 190px;
+    }
+
+    #main .shell table tr td #tp2 {
+        height: 210px;
+        width: 190px;
+    }
+
+    #main .shell table tr td #tp3 {
+        height: 250px;
+    }
+
+    .tabletop {
+        background-color: #36C;
+    }
+
+    #main .shell table tr .tabletop {
+        background-color: #CFC;
+        background-image: url(assets/images/hjwr/u=1151406522,1491404352&fm=23&gp=0.jpg);
+        background-repeat: repeat;
+        color: #030;
+        font-weight: bold;
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        font-size: 17px;
+        text-align: center;
+    }
+</style>
+<script type="text/javascript">
+    window.setInterval("fort()", 3000);           //3秒切换
+    var i = 1;
+
+    function fort() {
+        if (i == 1) {
+            myPicture.src = "assets/images/zwwl/z7.jpg";
+        }
+        if (i == 2) {
+            myPicture.src = "assets/images/zwwl/z6.jpg";
+        }
+        if (i == 3) {
+            myPicture.src = "assets/images/zwwl/z8.jpg";
+        }
+        if (i > 3) i = 0;
+        i++;
+    }
+</script>
+<body>
+<!-- Main -->
+<div id="main">
+    <div class="shell">
+        <table width="984" height="530" border="0">
+            <tr>
+                <td height="29" colspan="5" class="tabletop">展望美好的未来</td>
+            </tr>
+            <tr>
+                <td width="114" rowspan="2">
+                    城市环境是与城市整体互相关联的人文条件和自然条件的总和。包括社会坏境和自然环境。前者由经济、政治、文化、历史、人口、民族、行为等基本要素构成；后者包括地质、地貌、水文、气候、动植物、土壤等诸要素。城市环境质量好坏直接影响城市居民的生产和生活活动。它也是城市地理和城市规划学研究的主要内容之一。
+                </td>
+                <td height="460" colspan="3"><img id='myPicture' src="assets/images/zwwl/z7.jpg" width="737" height="448"/>
+                </td>
+                <td width="113" rowspan="2"><p>&nbsp;</p>
+                    <p>通过组织春季义务植树、春季绿化咨询暨绿化宣传板报展评、&ldquo;爱在林荫城市&rdquo;宣传和首届绿化网络征文，，向市民宣传绿化、美化家园的重要意义. </p>
+                    <div>面对现如今的环境，与其怀念过去的美好生活，倒不如让我们一起努力去创造我们想要的未来美好生活，从身边的小事做起，爱护环境，节约资源，与自然和谐相处，共同创造我们美好的未来！</div>
+                    <p>&nbsp;</p></td>
+            </tr>
+            <tr>
+                <td height="25" colspan="3">&nbsp;</td>
+            </tr>
+        </table>
+        <div class="cl"></div>
+        <!-- End Main -->
+        <!-- Footer --><!-- Footer --></div>
+</div>
+</body>
+<script src="assets/js/SlideTrans.js"></script>
+<script>
+    new SlideTrans("idContainer", "idSlider", 4, {Vertical: false}).Run();
+    new SlideTrans("idContainer2", "idSlider2", 4, {Vertical: false}).Run();
+    $$("idNext").onclick = function () {
+        st.Next();
+    }
+    $$("idPre").onclick = function () {
+        st.Previous();
+    }
+    $$("idTween").onchange = function () {
+        switch (parseInt(this.value)) {
+            case 2 :
+                st.Tween = Tween.Bounce.easeOut;
+                break;
+            case 1 :
+                st.Tween = Tween.Back.easeOut;
+                break;
+            default :
+                st.Tween = Tween.Quart.easeOut;
+        }
+    }
+
+</script>
+</html>

@@ -1,0 +1,107 @@
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<head>
+    <title>感悟现在</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="assets/css/gwxz.css" type="text/css" media="all"/>
+    <!--[if IE 6]>
+    <link rel="stylesheet" href="assets/css/ie6.css" type="text/css" media="all"/>
+    <script src="assets/js/png-fix.js" type="text/javascript"></script>
+    <![endif]-->
+</head>
+<style type="text/css">
+    .container, .container img {
+        width: 364px;
+        height: 255px;
+        color: #333;
+    }
+
+    .container img {
+        border: 0;
+        vertical-align: top;
+    }
+
+    #main .shell table tr td #tp1 {
+        height: 210px;
+        width: 190px;
+    }
+
+    #main .shell table tr td #tp2 {
+        height: 210px;
+        width: 190px;
+    }
+
+    #main .shell table tr td #tp3 {
+        height: 250px;
+    }
+</style>
+<body>
+<!-- Main -->
+<div id="main">
+    <div class="shell">
+        <table width="985" height="620" border="0" align="center">
+            <tr>
+                <td height="24" colspan="3">关于现在的环境污染，不用多说了，图片最能说明一切！！！！！！</td>
+                <td width="231" rowspan="2"><img src="assets/images/hjwr/u2001.jpg"
+                                                 width="229" height="250"/></td>
+                <td rowspan="2">
+                    <div class="container" id="idContainer"
+                         style=" border-color:#0FF; border:solid; border-width:thin;">
+                        <table id="idSlider" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td height="260"><img src="assets/images/hjwr/u2002.jpg" height="300"/></td>
+                                <td><img src="assets/images/hjwr/1320131868280_000.jpg"/></td>
+                                <td><img src="assets/images/hjwr/u2006.jpg"/></td>
+                                <td><img src="assets/images/hjwr/u2007.jpg"/></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td width="371" height="227">
+                    <img src="assets/images/hjwr/u2010.jpg" width="368" height="224"/></td>
+                <td colspan="2">&nbsp;</td>
+            </tr>
+            <tr>
+                <td height="352" colspan="4"><img src="assets/images/hjwr/u2003.jpg"
+                                                  width="610" height="336" alt=""/></td>
+                <td width="366" height="352"><p>
+                    现在的我们，生活在一个喧嚣，杂乱不堪，空气污浊，交通堵塞，天色灰暗的环境下，现在的天不再那么蓝，水不再那么清澈，
+                    吃的食物不在新鲜，到处都是污染，环境不再像以前那样美好，动物们不再像以前那样活跃，它们即将失去赖以生存的家园，
+                    面对现在的生活环境我们能做些什么呢？
+                </p>
+                    <p><img src="assets/images/hjwr/u2005.jpg" width="364"
+                            height="220" class="right"/></p></td>
+            </tr>
+        </table>
+        <div class="cl"></div>
+        <!-- End Main -->
+    </div>
+</div>
+</body>
+<script src="assets/js/SlideTrans.js"></script>
+<script>
+    new SlideTrans("idContainer", "idSlider", 4, {Vertical: false}).Run();
+    new SlideTrans("idContainer2", "idSlider2", 4, {Vertical: false}).Run();
+    $$("idNext").onclick = function () {
+        st.Next();
+    }
+    $$("idPre").onclick = function () {
+        st.Previous();
+    }
+    $$("idTween").onchange = function () {
+        switch (parseInt(this.value)) {
+            case 2 :
+                st.Tween = Tween.Bounce.easeOut;
+                break;
+            case 1 :
+                st.Tween = Tween.Back.easeOut;
+                break;
+            default :
+                st.Tween = Tween.Quart.easeOut;
+        }
+    }
+
+</script>
+</html>

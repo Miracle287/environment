@@ -1,0 +1,85 @@
+<html>
+<head>
+    <title>论坛管理</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" type="text/css" href="../assets/css/button.css" />
+    <script src="../assets/js/jquery-1.4.2.js" type="text/javascript"></script>
+    <style type="text/css">
+        body, td, th {
+            font-family: 宋体;
+            font-size: medium;
+            color: black;
+            font-weight: bold;
+        }
+
+        body {
+
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+            text-align: center;
+            width: 80%;
+        }
+
+        table td, table th {
+            border: 1px solid #cad9ea;
+            color: #666;
+            height: 30px;
+        }
+
+        table thead th {
+            background-color: #CCE8EB;
+            width: 100px;
+        }
+
+        table tr:nth-child(odd) {
+            background: #fff;
+        }
+
+        table tr:nth-child(even) {
+            background: #F5FAFA;
+        }
+
+    </style>
+</head>
+<body>
+<center>
+    <h2><font color="red">管理论坛信息</font></h2>
+</center>
+<p>
+<table id="manage_table">
+    <tr>
+        <td>昵称</td>
+        <td>评论</td>
+        <td>管理</td>
+    </tr>
+    <% for (reply in replys) { %>
+    <tr>
+        <td>${reply.name}</td>
+        <td>${reply.reply}</td>
+        <td><a href="#" class="button button-red"><span id="delete-${reply.id}" onclick="deleteReply(${reply.id})">删除</span></a></td>
+    </tr>
+    <% } %>
+</table>
+</body>
+<script>
+    function deleteReply(id) {
+        $.ajax({
+            type: "delete",
+            url: "deleteReply?id=" + id,
+            async: false,
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success:function (data) {
+                if (data.isOk) {
+                    window.location.href=document.referrer;
+                } else {
+                    alert("删除失败");
+                }
+            }
+        });
+    }
+</script>
+</html>

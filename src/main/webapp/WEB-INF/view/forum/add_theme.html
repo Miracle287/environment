@@ -1,0 +1,172 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="../assets/js/jquery-1.4.2.js" type="text/javascript"></script>
+    <title>新增讨论主题</title>
+    <style type="text/css">
+        #form1 table tr td div {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<style type="text/css">
+    body {
+        margin-top: 0px;
+    }
+
+    body, td, th {
+        font-family: Times New Roman, Times, serif;
+        font-size: 12px;
+    }
+
+    a:link {
+        text-decoration: none;
+        color: #000000;
+    }
+
+    a:visited {
+        text-decoration: none;
+        color: #000000;
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: #FF0000;
+    }
+
+    a:active {
+        text-decoration: none;
+        color: #FF0000;
+    }
+</style>
+</head>
+<script language="javascript">
+    function check() {
+        if (form1.theme.value == "") {
+            alert("没有输入新主题!");
+            form1.theme.focus();
+            return false;
+        } else if (form1.name.value == "") {
+            alert("没有输入作者!");
+            form1.name.focus();
+            return false;
+        } else if (form1.name.value == "") {
+            alert("没有输入主题内容!");
+            form1.name.focus();
+            return false;
+        } else {
+            addTheme();
+        }
+        return true;
+    }
+
+    function addTheme() {
+        $.ajax({
+            type: "post",
+            url: "addTheme",
+            async: false,
+            data: $('#form1').serialize(),
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success:function (data) {
+                if (data.isOk) {
+                    location.href = "../forum";
+                } else {
+                    alert("发表主题失败");
+                }
+            }
+        });
+    }
+</script>
+<body background="../assets/images/ltbj.jpg">
+<table width="764" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+        <td width="764"><img src="../assets/images/luntantop.jpg" width="764" height="179"/></td>
+    </tr>
+    <tr>
+        <td>
+            <table width="764" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td bgcolor="#FFFFFF">
+                        <form name="form1" id="form1">
+                            <table width="668" border="1" align="center" cellpadding="0" cellspacing="0"
+                                   bordercolor="#66CCFF">
+                                <tr>
+                                    <td width="12%" height="24">
+                                        <div align="right">新主题：</div>
+                                    </td>
+                                    <td width="88%"><label>
+                                        <input name="theme" type="text" id="bbs_title" size="40"/>
+                                    </label></td>
+                                </tr>
+                                <tr>
+                                    <td height="26">
+                                        <div align="right">发表人：</div>
+                                    </td>
+                                    <td>&nbsp;&nbsp;&nbsp;${session.User.username}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="27">
+                                        <div align="right">心情：</div>
+                                    </td>
+                                    <td>
+                                        <input name="mood" type="radio" value="images/tb/p1.gif" checked="checked"/>
+                                        <img src="../assets/images/tb/p1.gif"/>
+                                        <input name="mood" type="radio" value="images/tb/p2.gif"/>
+                                        <img src="../assets/images/tb/p2.gif"/>
+                                        <input name="mood" type="radio" value="images/tb/p3.gif"/>
+                                        <img src="../assets/images/tb/p3.gif"/>
+                                        <input name="mood" type="radio" value="images/tb/p4.gif"/>
+                                        <img src="../assets/images/tb/p4.gif"/>
+                                        <input name="mood" type="radio" value="images/tb/p5.gif"/>
+                                        <img src="../assets/images/tb/p5.gif"/>
+                                        <input name="mood" type="radio" value="images/tb/p6.gif"/>
+                                        <img src="../assets/images/tb/p6.gif"/>
+                                        <input name="mood" type="radio" value="images/tb/p14.gif"/>
+                                        <img src="../assets/images/tb/p14.gif"/>
+                                        <input name="mood" type="radio" value="images/tb/p21.gif"/>
+                                        <img src="../assets/images/tb/p21.gif"/>
+                                        <input name="mood" type="radio" value="images/tb/p22.gif"/>
+                                        <img src="../assets/images/tb/p22.gif"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <div align="right">性别：</div>
+                                    </td>
+                                    <td>
+                                        <input name="sex" type="radio" value="男" checked="checked" />男
+                                        <input name="sex" type="radio" value="女" />女
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top">
+                                        <div align="right">主题内容：</div>
+                                    </td>
+                                    <td><label>
+                                        <textarea name="content" cols="45" rows="8" id="bbs_content"></textarea>
+                                    </label></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label style="position: center; text-align: center; margin-left: 250px">
+                                            <input name="submit" type="button" value="确定提交" onclick="check()"/>
+                                            <input type="reset" name="reset" value="重新填写"/>
+                                        </label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td height="40" bgcolor="#4DAFFE"><p></p></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

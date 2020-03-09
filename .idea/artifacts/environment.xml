@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="environment">
+    <output-path>$PROJECT_DIR$/out/artifacts/environment</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="environment" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.jfinal:jfinal-undertow:2.0" />
+          <element id="library" level="project" name="Maven: io.undertow:undertow-core:2.0.28.Final" />
+          <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.4.0.Final" />
+          <element id="library" level="project" name="Maven: org.jboss.xnio:xnio-api:3.3.8.Final" />
+          <element id="library" level="project" name="Maven: org.jboss.xnio:xnio-nio:3.3.8.Final" />
+          <element id="library" level="project" name="Maven: io.undertow:undertow-servlet:2.0.28.Final" />
+          <element id="library" level="project" name="Maven: com.jfinal:jfinal:4.8" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="environment/web/Web" />
+    </root>
+  </artifact>
+</component>

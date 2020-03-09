@@ -1,0 +1,75 @@
+<html lang="en-US" xmlns="http://www.w3.org/1999/xhtml" dir="ltr">
+<head>
+    <title>最新新闻</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="assets/css/zwwl.css" type="text/css" media="all"/>
+    <!--[if IE 6]>
+    <link rel="stylesheet" href="assets/css/ie6.css" type="text/css" media="all"/>
+    <script src="assets/js/png-fix.js" type="text/javascript"></script>
+    <![endif]-->
+</head>
+<style type="text/css">
+    .container, .container img {
+        width: 580px;
+        height: 260px;
+        color: #333;
+    }
+
+    .container img {
+        border: 0;
+        vertical-align: top;
+    }
+
+    #main .shell table tr td #tp1 {
+        height: 210px;
+        width: 190px;
+    }
+
+    #main .shell table tr td #tp2 {
+        height: 210px;
+        width: 190px;
+    }
+
+    #main .shell table tr td #tp3 {
+        height: 250px;
+    }
+
+    .tabletop {
+        background-color: #36C;
+    }
+
+    #main .shell table tr .tabletop {
+        background-color: #CFC;
+        background-image: url(assets/images/hjwr/u=1151406522,1491404352&fm=23&gp=0.jpg);
+        background-repeat: repeat;
+        color: #030;
+        font-weight: bold;
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        font-size: 17px;
+        text-align: center;
+    }
+</style>
+<body>
+<!-- Main -->
+<div id="main">
+    <div class="shell">
+        <table width="984" height="531" border="0">
+            <tr style="text-align: center; width: 100%">
+                <h1 align="center">${news.headline}</h1>
+            </tr>
+            <br/> <br/>
+            <tr>
+                <img align="center" style="text-align: center; align-self: center" src="assets/${news.imgsrc}">
+            <tr>
+                <td height="32" colspan="3">&nbsp;</td>
+            </tr>
+            <br/> <br/>
+            <p style="font-size: 16px">${news.text}</p>
+            </tr>
+
+        </table>
+        <!-- End Main -->
+    </div>
+</div>
+</body>
+</html>

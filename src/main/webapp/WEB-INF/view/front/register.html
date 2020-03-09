@@ -1,0 +1,107 @@
+<html>
+<head>
+    <title>注册</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="assets/js/jquery-1.4.2.js" type="text/javascript"></script>
+    <style type="text/css">
+        <!--
+        body, td, th {
+            font-family: 宋体;
+            font-size: medium;
+            color: black;
+            font-weight: bold;
+        }
+
+        body {
+            background-image: url(assets/images/zcbj.jpg);
+            background-repeat: repeat;
+        }
+
+        #apDiv1 {
+            position: absolute;
+            width: 524px;
+            height: 206px;
+            z-index: 1;
+            left: 563px;
+            top: 34px;
+        }
+
+        #apDiv1 form table caption h1 {
+            color: #069;
+        }
+
+        -->
+    </style>
+</head>
+<body>
+<script language="javascript">
+    function check() {
+        if (form1.username.value == "") {
+            alert("没有输入昵称!");
+            form1.username.focus();
+            return false;
+        } else if (form1.password.value == "") {
+            alert("没有输入密码!");
+            form1.password.focus();
+            return false;
+        } else if (form1.Upa.value != form1.password.value) {
+            alert("两次输入密码不一致!");
+            form1.Upa.focus();
+            return false;
+        } else {
+            register();
+        }
+        return true;
+    }
+</script>
+<div id="apDiv1" style="border:solid; border-width:thin; border:#CCC">
+    <form name="form1">
+        <table align="center" width="51%" border="0">
+            <caption><h1>注册新用户</h1></caption>
+
+            <tr>
+                <th>用户名：</th>
+                <td><input name="username" type="text"></td>
+            </tr>
+            <tr>
+                <th>密码：</th>
+                <td><input name="password" type="password"></td>
+            </tr>
+            <tr>
+                <th>确认密码：</th>
+                <td><input name="Upa" type="password"></td>
+            </tr>
+
+            <th colspan="2">
+                <input type="button" name="submit" value="注册" onclick="check()">
+                <input type="reset" value="重置">
+            </th>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+<script>
+    function register() {
+        $.ajax({
+            type: "post",
+            url: "user/doRegister",
+            async: false,
+            data: {
+                username: form1.username.value,
+                password: form1.password.value
+            },
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success:function (data) {
+                if (data.isOk) {
+                    alert("注册成功");
+                    location.href = "login";
+                } else {
+                    alert("用户名已经存在");
+                }
+            }
+        });
+    }
+</script>
+</html>

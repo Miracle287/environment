@@ -1,0 +1,183 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="../assets/js/jquery-1.4.2.js" type="text/javascript"></script>
+    <title>讨论主题</title>
+    <style type="text/css">
+        body {
+            margin-top: 0px;
+            background-repeat: repeat-x;
+        }
+
+        body, td, th {
+            font-family: Times New Roman, Times, serif;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .style18 {
+            color: cadetblue;
+        }
+
+        a:link {
+            text-decoration: none;
+            color: #000000;
+        }
+
+        a:visited {
+            text-decoration: none;
+            color: #000000;
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: #FF0000;
+        }
+
+        a:active {
+            text-decoration: none;
+            color: #00F;
+            font-weight: bold;
+        }
+
+        #nav li #zc {
+            font-weight: bold;
+        }
+
+        #nav li #dl {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body background="../assets/images/ltbj.jpg" onLoad="show()">
+<table width="764" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+        <td width="764"><img src="../assets/images/luntantop.jpg" width="764" height="179"/></td>
+    </tr>
+
+    <tr>
+        <td height="30" bgcolor="#FFFFFF">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td width="572" height="30">
+                        <table width="99%" height="30" border="0" align="center" cellpadding="0" cellspacing="0"
+                               bgcolor="#FFFFFF">
+                            <tr>
+                                <td valign="middle">
+                                    <ul id="nav">
+                                        <li><a href="../login" id="dl">${session.User==null?"登录":session.User.username}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="../user/logout" id="zx">${session.User==null?"":"退出"}</a></li>
+                                        <li><a href="../register" id="zc">${session.User==null?"注册":""}</a></li>
+                                        <li>
+                                            <a href=".." style="color:#00F; font-weight: bold;"><img src="../assets/images/tb/home.gif" width="16" height="16"/>回到主页</a>&nbsp;&nbsp;
+                                            <a href="../forum" class="style18" style="font-weight: bold;">
+                                                <img src="../assets/images/tb/fanhui.jpg" width="20" height="20"><span class="style18">返回</span>
+                                            </a>
+                                            </span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;主题：${theme.theme}
+                                        </li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="192">&nbsp;<img src="../assets/images/tb/mreply.gif" onClick="check()" width="72" height="21"/>&nbsp;&nbsp;&nbsp;
+                        &nbsp;<img src="../assets/images/tb/Editor.gif" onClick="checkroot()" width="59" height="20"/></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+                <tr>
+                    <td>
+                        <table width="100%" border="1" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+                            <tr>
+                                <td width="168" rowspan="2" bgcolor="#FFFFFF" valign="top"><p align="center">&nbsp;</p>
+                                    <p align="center"><img src="../assets/images/tb/2.gif" alt="" width="72" height="122"></p>
+                                    <p align="center"> 发表人：${theme.name}
+                                    </p></td>
+                                <td width="588" height="120" bgcolor="#FFFFFF">主题内容：${theme.content}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="25" bgcolor="#FFFFFF">性别&nbsp:${theme.sex}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    心情&nbsp;：<img src="../assets/${theme.mood}"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <%
+                for (reply in replys) {
+                    var path;
+                    if (reply.sex == "男") {
+                        path = "images/tb/4.gif";
+                    } else {
+                        path = "images/tb/1.gif";
+                    }
+                %>
+                <tr>
+                    <td>
+                        <table width="100%" border="1" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td width="170" rowspan="2" bgcolor="#FFFFFF" valign="top"><p align="center">&nbsp;</p>
+                                    <p align="center"><img src="../assets/${path}" alt="" width="72" height="122">&nbsp;&nbsp;&nbsp;
+                                    </p>
+                                    <p align="center">回复人：${reply.name}
+                                    </p></td>
+                                <td width="587" height="120" bgcolor="#FFFFFF">回复内容：${reply.reply}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="25" bgcolor="#FFFFFF">性别： ${reply.sex} </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <%
+                }
+                %>
+            </table>
+        </td>
+    </tr>
+</table>
+<table width="764" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+    <tr>
+        <td width="749" height="1">
+            <table border="0" align="center">
+                <tr>
+                    <td width="82"></td>
+                    <td width="71"></td>
+                    <td width="59"></td>
+                    <td width="89"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td height="40" bgcolor="#4DAFFE"><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+        </td>
+    </tr>
+</table>
+<p style="display: none" id="themeId">${theme.id}</p>
+<script>
+    function checkroot() {
+        var ps = $('#dl').text();
+        if (ps != "root") {
+            alert("您不是管理员，不能管理该主题");
+        } else {
+            self.location = 'manage?id=' + $('#themeId').text();
+        }
+    }
+
+    function check() {
+        var ps = $('#dl').text();
+        if (ps == null || ps == "登录") {
+            alert("您还没登录，请先登录");
+        } else {
+            self.location = 'reply?id=' + $('#themeId').text();
+        }
+    }
+</script>
+</body>
+</html>

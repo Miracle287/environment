@@ -1,0 +1,217 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="assets/js/jquery-1.4.2.js" type="text/javascript"></script>
+    <title>环境保护论坛</title>
+    <style type="text/css">
+        body {
+            margin-top: 0px;
+            background-color: #FFF;
+            background-repeat: repeat-x;
+        }
+
+        body, td, th {
+            font-family: 宋体;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        a:link {
+            text-decoration: none;
+            color: #000000;
+        }
+
+        a:visited {
+            text-decoration: none;
+            color: #000000;
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: #FF0000;
+        }
+
+        a:active {
+            text-decoration: none;
+            color: #00F;
+            font-weight: bold;
+        }
+
+        #dl a {
+            color: #00F;
+        }
+
+        #dl {
+            font-weight: normal;
+        }
+
+        .yanse #tc u {
+            color: #00F;
+        }
+
+        .yanse a u {
+            color: #00F;
+        }
+
+        .themeheader {
+            text-align: center;
+        }
+
+        .themelist {
+            text-align: center;
+        }
+    </style>
+</head>
+<body background="assets/images/ltbj.jpg">
+<table width="764" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+        <td width="764"><img src="assets/images/luntantop.jpg" width="764" height="179"/></td>
+    </tr>
+
+    <tr>
+        <td height="30" bgcolor="#FFFFFF">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="381" height="30">
+                        <table width="95%" height="30" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td valign="middle">
+                                    <form name="form1" id="form1">
+                                        <div align="center">查询主题：
+                                            <input name="keyword" type="text" id="keyword" size="26"/>
+                                            <input type="button" onclick="search()" value="查询"/>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td width="383">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td width="50%" height="24">
+                                    <h4 id="dl">${session.User==null?"您好，游客，请您先登录!":session.User.username}</h4>
+                                    <a href="login"><u>${session.User==null?"登录":""}</u></a>
+                                    <a href="register"><u>注册</u></a>&nbsp;
+                                    <a href="user/logout" id="tc"><u>${session.User==null?"":"退出"}</u></a>
+                                </td>
+                                <td width="50%">
+                                    <div align="right">
+                                        <img src="assets/images/tb/postnew.gif" onClick="check()" width="72" height="21" border="0"/>&nbsp;
+                                        <img src="assets/images/tb/Editor.gif" onClick="checkroot()" width="59" height="20" border="0"/>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table id="themetable" width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="#66CCFF" bgcolor="#FFFFFF">
+                <tr class="themeheader">
+                    <td width="6%" height="29">序号</td>
+                    <td width="7%" height="29">心情</td>
+                    <td width="40%">发 言 主 题</td>
+                    <td width="14%">用户</td>
+                    <td width="18%">发布时间</td>
+                    <td width="12%" class="theme-manage">管理</td>
+                </tr>
+                <%
+                var themeId = 0;
+                for(theme in themes) {
+                    themeId = themeId + 1;
+                %>
+                <tr class="themelist">
+                    <td width="6%" height="29">${themeId}</td>
+                    <td width="7%" height="29"><img src="assets/${theme.mood}"/></td>
+                    <td width="40%"><a href='forum/theme?id=${theme.id}'>${theme.theme}</a></td>
+                    <td width="14%">${theme.name}</td>
+                    <td width="18%">${theme.time}</td>
+                    <td width="12%" class="theme-manage"><a href="#" class="button button-red"><span id="delete-${theme.id}" onclick="deleteTheme(${theme.id})">删除</span></a></td>
+                </tr>
+                <% } %>
+                <tr>
+                    <td height="20" colspan="7"></td>
+                </tr>
+                <tr>
+                    <td height="40" colspan="7" bgcolor="#4DAFFE">
+                        <a href="index"><img src="assets/images/tb/home.gif" width="16" height="16"/>回到主页</a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+<script>
+    var youke = "您好，游客，请您先登录!";
+    $(function() {
+        $('.theme-manage').hide();
+    });
+
+    function checkroot() {
+        var ps = $('#dl').text();
+        if (ps != "root") {
+            alert("您不是管理员，不能管理主题");
+        } else {
+            //管理主题（帖子）
+            if ($('.theme-manage').is(":hidden")) {
+                $('.theme-manage').show();
+            } else {
+                $('.theme-manage').hide();
+            }
+        }
+    }
+
+    function check() {
+        var ps = $('#dl').text();
+        if (ps == null || ps == youke) {
+            alert("您还没登录，请先登录");
+        } else {
+            self.location = 'forum/add_theme';
+        }
+    }
+
+    function search() {
+        var searchKey = document.getElementById("keyword").value;
+        $.ajax({
+            type: "get",
+            url:  "forum/search?keyName=" + searchKey,
+            async: false,
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success:function (data) {
+                $('.themeList').remove();
+                // 重置元素
+                var themes = data.result;
+                for(var i = 0; i < themes.length; i++) {
+                    var txt1 = "<tr class='themelist'><td width='6%' height='29'>" + (themes.length - i) + "</td>";
+                    var txt2 = "<td width='7%' height='29'><img src='assets/" + themes[i].mood + "' /></td>";
+                    var txt3 = "<td width='49%'><a href='forum/theme?id=" + themes[i].id + "'>" + themes[i].theme + "</a></td><td width='20%'>" + themes[i].name + "</td>";
+                    var txt4 = "<td width='18%'>" + themes[i].time + "</td></tr>";
+                    $('.themeheader').after(txt1 + txt2 + txt3 + txt4);
+                };
+            }
+        });
+    }
+
+    function deleteTheme(id) {
+        $.ajax({
+            type: "delete",
+            url: "forum/deleteTheme?id=" + id,
+            async: false,
+            dataType: "json",
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success:function (data) {
+                if (data.isOk) {
+                    window.location.reload();
+                } else {
+                    alert("删除失败");
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

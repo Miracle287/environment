@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>保护环境，人人有责</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" media="all"/>
+    <!--[if IE 6]>
+    <link rel="stylesheet" href="assets/css/ie6.css" type="text/css" media="all"/>
+    <script src="assets/js/png-fix.js" type="text/javascript"></script>
+    <![endif]-->
+    <script src="assets/js/jquery-1.4.2.js" type="text/javascript"></script>
+    <script src="assets/js/jquery.jcarousel.js" type="text/javascript"></script>
+    <script src="assets/js/js-func.js" type="text/javascript"></script>
+    <style type="text/css">
+        body {
+            background-color: #CFC;
+        }
+
+        #newsbox {
+            height: 238px;
+            overflow: hidden;
+        }
+
+        a:link {
+            color: #4c4c4c;
+        }
+
+        a:hover {
+            color: #F00;
+        }
+    </style>
+</head>
+<body>
+<!-- Slider -->
+<div id="slider">
+    <div class="shell">
+        <div class="slider-holder">
+            <div class="slider-left">
+                <ul>
+                    <% for(slider in sliders) { %>
+                    <li>
+                        <h2>${slider.title}</h2>
+                        <p>${slider.context}</p>
+                    </li>
+                    <% } %>
+                </ul>
+            </div>
+            <div class="slider-right">
+                <ul>
+                    <% for(slider in sliders) { %>
+                    <li><img src="assets/${slider.pic}" alt="" width="642" height="348"/></li>
+                    <% } %>
+                </ul>
+            </div>
+            <div class="cl">&nbsp;</div>
+            <div class="slider-nav">
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">5</a>
+                <div class="cl">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Slider -->
+<!-- Main -->
+<div id="main">
+    <div class="shell">
+        <div class="col">
+            <h2><a href="forum" target="_blank">关注我们的论坛</a></h2>
+            <img src="assets/images/luntantop2.jpg" alt="" width="288" height="160" class="right"/>
+            <p>环境是我们每一个人共同的财富,我们可以发表自己的观点、提出自己的建议，在论坛里交流我们的思想，不 仅自己努力爱护环境，也让更多人了解我们自己的观点，参与到行动中......</p>
+            <a href="forum" target="_blank" class="find-more">更多</a>
+        </div>
+        <div class="col">
+            <h2><a href="protect" target="_top">关注健康，做好防护</a></h2>
+            <p>●&nbsp;口罩是必不可少的，早晨出门的时候最好要戴上口罩，最好选择较厚的，而且还要注意清洁，最好每天都要进行清洗，否则灰尘太多，对你的健康也是不利的。</p>
+            <p>●&nbsp;早晨出门之前一定要关好门窗，北方雾霾较重的时候，没有及时关好门窗，室内的空气会很糟糕，甚至你都能看到、摸到细小的灰尘，可想而知，在这种环境中怎么能舒服呢?</p>
+            <p>●&nbsp;雾霾天气室内空气能好得了吗?空气净化器就可以发挥作用了，如果你不想被雾霾折磨得患上各种呼吸道疾病，那就用室内净化器来缓解一下吧。</p>
+            <p>●&nbsp;点击更多了解如何做好防护的措施...........</p>
+            <a href="protect" target="_top" class="find-more">更多</a></div>
+        <div class="col last">
+            <h2>最新相关新闻</h2>
+            <div id="newsbox">
+                <% for(new in news) { %>
+                <p style="color:#4c4c4c"><a href="news?news_id=${new.id}" target="_blank">●&nbsp;${new.headline}</a></p>
+                <% } %>
+            </div>
+            <div class="cl">&nbsp;</div>
+        </div>
+        <div class="cl">&nbsp;</div>
+    </div>
+</div>
+<!-- End Main -->
+</body>
+<script>
+    var c, _ = Function;
+    with (o = document.getElementById("newsbox")) {
+        innerHTML += innerHTML;
+        onmouseover = _("c=1");
+        onmouseout = _("c=0");
+    }
+    (F = _("if(#%22||!c)#++,#%=o.scrollHeight>>1;setTimeout(F,#%22?10:1200);".replace(/#/g, "o.scrollTop")))();
+</script>
+</html>
