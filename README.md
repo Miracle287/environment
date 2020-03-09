@@ -1,7 +1,7 @@
 # environment
 本科网页设计大赛作品，环境保护网，仅供学习参考
 
-
+​         
 
 #### 技术
 
@@ -11,13 +11,13 @@
 
 数据库：MySQL 8.0
 
-
+​       
 
 #### 首页展示
 
 ![MainPage](screenshot/MainPage.png)
 
-
+​        
 
 #### 作者
 
